@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>{{PAGE_TITLE}} - All Cellphones | {{PAGE_SUBTITLE}}</title>
+  <meta name="description" content="{{PAGE_DESCRIPTION}}">
+  <meta name="keywords" content="{{PAGE_KEYWORDS}}">
+  <meta name="author" content="All Cellphones">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="Spanish">
+  <meta name="geo.region" content="AR-X">
+  <meta name="geo.placename" content="Córdoba, Argentina">
+  <meta name="geo.position" content="-31.4201;-64.1888">
+  <meta name="ICBM" content="-31.4201, -64.1888">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://allcellphones.com.ar/{{PAGE_URL}}">
+  <meta property="og:title" content="{{PAGE_TITLE}} - All Cellphones | {{PAGE_SUBTITLE}}">
+  <meta property="og:description" content="{{PAGE_DESCRIPTION}}">
+  <meta property="og:image" content="https://allcellphones.com.ar/assets/img/logo_small.png">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="All Cellphones">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://allcellphones.com.ar/{{PAGE_URL}}">
+  <meta property="twitter:title" content="{{PAGE_TITLE}} - All Cellphones | {{PAGE_SUBTITLE}}">
+  <meta property="twitter:description" content="{{PAGE_DESCRIPTION}}">
+  <meta property="twitter:image" content="https://allcellphones.com.ar/assets/img/logo_small.png">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://allcellphones.com.ar/{{PAGE_URL}}">
+
+  <!-- Favicons -->
+  <link href="assets/img/logo_small.png" rel="icon">
+  <link href="assets/img/logo_small.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Unified CSS System -->
+  <link href="assets/css/unified-main.css" rel="stylesheet">
+
+  <!-- Page-specific structured data -->
+  {{STRUCTURED_DATA}}
+</head>
+
+<body class="{{PAGE_CLASS}}">
+<a href="#main" class="skip-to-content">Saltar al contenido</a>
+
+  <!-- UNIFIED HEADER -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/logo_small.png" alt="All Cellphones - Expertos en Remanufactura Apple" loading="lazy">
+        <h1 class="sitename">All Cellphones</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html" class="{{NAV_INICIO_ACTIVE}}">Inicio</a></li>
+          <li><a href="remanufactura.html" class="{{NAV_REMANUFACTURA_ACTIVE}}">Remanufactura</a></li>
+          <li><a href="capacitacion.html" class="{{NAV_CAPACITACION_ACTIVE}}">Capacitación</a></li>
+          <li><a href="venta-iphones.html" class="{{NAV_IPHONES_ACTIVE}}">iPhones</a></li>
+          <li class="dropdown"><a href="recursos.html"><span>Recursos</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="recursos.html" class="{{NAV_RECURSOS_ACTIVE}}">Blog y Tutoriales</a></li>
+              <li><a href="recursos.html#guides">Guías Técnicas</a></li>
+              <li><a href="recursos.html#faq">Preguntas Frecuentes</a></li>
+            </ul>
+          </li>
+          <li><a href="contacto.html" class="{{NAV_CONTACTO_ACTIVE}}">Contacto</a></li>
+        </ul>
+        <i class="mobile-nav-toggle bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="contacto.html">{{CTA_BUTTON_TEXT}}</a>
+
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main" class="main">
+
+    <!-- UNIFIED HERO SECTION -->
+    <section id="hero" class="hero section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 content-col" data-aos="fade-up">
+            <div class="content">
+              <div class="agency-name">
+                <h5>{{HERO_TAGLINE}}</h5>
+              </div>
+
+              <div class="main-heading">
+                <h1>{{HERO_TITLE}}</h1>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="description">
+                <p>{{HERO_DESCRIPTION}}</p>
+              </div>
+
+              <div class="cta-button">
+                <a href="{{HERO_CTA_LINK}}" class="btn">
+                  <span>{{HERO_CTA_TEXT}}</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5" data-aos="zoom-out">
+            <div class="visual-content">
+              <div class="row g-4">
+                {{HERO_BADGES}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Hero Section -->
+
+    <!-- DYNAMIC MAIN CONTENT -->
+    {{MAIN_CONTENT}}
+
+    <!-- UNIFIED CALL TO ACTION SECTION -->
+    <section id="call-to-action" class="call-to-action section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-xl-8 text-center" data-aos="fade-up" data-aos-delay="200">
+            <h2>{{CTA_TITLE}}</h2>
+            <p class="lead">{{CTA_DESCRIPTION}}</p>
+            
+            <div class="features d-flex flex-wrap gap-3 mb-4">
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill text-apple-green"></i>
+                <span>Atención Personalizada</span>
+              </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill text-apple-green"></i>
+                <span>Presupuesto Sin Cargo</span>
+              </div>
+              <div class="feature-item">
+                <i class="bi bi-check-circle-fill text-apple-green"></i>
+                <span>Respuesta Rápida</span>
+              </div>
+            </div>
+
+            <div class="cta-buttons d-flex flex-wrap gap-3 justify-content-center">
+              <a href="contacto.html" class="btn btn-primary">{{CTA_PRIMARY_BUTTON}}</a>
+              <a href="contacto.html" class="btn btn-outline-light">{{CTA_SECONDARY_BUTTON}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Call To Action Section -->
+
+  </main>
+
+  <!-- UNIFIED FOOTER -->
+  <footer id="footer" class="footer">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <img src="assets/img/logo_small.png" alt="All Cellphones - Expertos en Remanufactura Apple Córdoba" loading="lazy">
+            <span class="sitename">All Cellphones</span>
+          </a>
+          <p>Expertos en remanufactura Apple con más de 20 años de experiencia en reparación de celulares y 6 años especializándonos en tecnología de punta.</p>
+          <div class="social-links d-flex mt-4">
+            <a href="https://www.youtube.com/@allcellphone" target="_blank"><i class="bi bi-youtube"></i></a>
+            <a href="https://www.instagram.com/allcellphones/" target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.tiktok.com/@acp.allcellphones" target="_blank"><i class="bi bi-tiktok"></i></a>
+            <a href="https://wa.me/5493515054213" target="_blank"><i class="bi bi-whatsapp"></i></a>
+            <a href="mailto:info@allcellphones.com.ar"><i class="bi bi-envelope"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="remanufactura.html">Remanufactura Apple</a></li>
+            <li><a href="capacitacion.html">Capacitación Técnica</a></li>
+            <li><a href="venta-iphones.html">Venta de iPhones</a></li>
+            <li><a href="programa-remanufactura.html">Programa de Remanufactura</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Recursos</h4>
+          <ul>
+            <li><a href="recursos.html">Blog / Recursos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="remanufactura-clientes.html">Para Clientes</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact">
+          <h4>Contacto Directo</h4>
+          <p>
+            <i class="bi bi-geo-alt"></i>
+            <a href="https://maps.app.goo.gl/BgeSc54orpzTARYC6" target="_blank" style="color: inherit; text-decoration: none;">
+              Montecarlo 494<br>
+              Córdoba Capital
+            </a><br><br>
+            <i class="bi bi-phone"></i>
+            <a href="https://wa.me/5493515054213" target="_blank">+54 9 351 505 4213</a><br>
+            <i class="bi bi-envelope"></i>
+            <a href="mailto:info@allcellphones.com.ar">info@allcellphones.com.ar</a><br>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright 2025</span> <strong class="px-1 sitename">All Cellphones</strong> <span>Todos los derechos reservados</span></p>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html> 

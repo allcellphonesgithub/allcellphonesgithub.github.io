@@ -1,0 +1,503 @@
+/* ==========================================================================
+   Venta de iPhones - Enhanced Visual Design
+   ========================================================================== */
+
+/* Page-specific styling for venta-iphones.html */
+.venta-iphones-page {
+  /* Use unified color system variables */
+  --primary-blue: var(--brand-primary);
+  --primary-green: var(--success);
+  --primary-orange: var(--brand-accent);
+  --primary-red: var(--error);
+  --dark-bg: var(--bg-secondary);
+  --dark-card: var(--bg-tertiary);
+  --light-gray: var(--bg-light);
+  --border-light: var(--border-light);
+}
+
+/* ==========================================================================
+   Used iPhones Section - Enhanced Layout
+   ========================================================================== */
+
+#usados {
+  background: linear-gradient(135deg, var(--bg-light) 0%, #e2e8f0 100%);
+  padding: 80px 0;
+}
+
+/* Section Introduction */
+.section-intro {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 40px rgba(15, 23, 42, 0.08),
+    0 8px 16px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-intro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-green), var(--primary-orange));
+  border-radius: 20px 20px 0 0;
+}
+
+.section-intro h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-intro .lead {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #475569;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.section-intro p {
+  font-size: 1.1rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* Verification Process */
+.verification-process {
+  background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 
+    0 15px 30px rgba(15, 23, 42, 0.1),
+    0 6px 12px rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  height: 100%;
+}
+
+.verification-process h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 25px;
+  text-align: center;
+  position: relative;
+}
+
+.verification-process h4::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+  border-radius: 2px;
+}
+
+.verification-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.verification-step {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, rgba(52, 199, 89, 0.05) 0%, rgba(52, 199, 89, 0.02) 100%);
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-green);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.verification-step:hover {
+  transform: translateX(8px);
+  background: linear-gradient(135deg, rgba(52, 199, 89, 0.1) 0%, rgba(52, 199, 89, 0.05) 100%);
+  box-shadow: 0 8px 16px rgba(52, 199, 89, 0.15);
+}
+
+.verification-step i {
+  font-size: 1.3rem;
+  color: var(--primary-green);
+  min-width: 24px;
+}
+
+.verification-step span {
+  font-weight: 600;
+  color: #334155;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   Condition Grades - Enhanced Cards
+   ========================================================================== */
+
+.condition-grades {
+  margin: 60px 0;
+}
+
+.condition-grades h4 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.condition-grades h4::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-orange));
+  border-radius: 2px;
+}
+
+.grade-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  padding: 35px 25px;
+  border-radius: 20px;
+  text-align: center;
+  height: 100%;
+  box-shadow: 
+    0 15px 30px rgba(15, 23, 42, 0.08),
+    0 6px 12px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.grade-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--grade-color, var(--primary-blue));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.grade-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(15, 23, 42, 0.15),
+    0 10px 20px rgba(15, 23, 42, 0.08);
+}
+
+.grade-card:hover::before {
+  opacity: 1;
+}
+
+/* Grade-specific colors */
+.grade-card:nth-child(1) {
+  --grade-color: var(--primary-green);
+}
+
+.grade-card:nth-child(1):hover {
+  box-shadow: 0 25px 50px rgba(52, 199, 89, 0.2);
+}
+
+.grade-card:nth-child(2) {
+  --grade-color: var(--primary-blue);
+}
+
+.grade-card:nth-child(2):hover {
+  box-shadow: 0 25px 50px rgba(0, 122, 255, 0.2);
+}
+
+.grade-card:nth-child(3) {
+  --grade-color: var(--primary-orange);
+}
+
+.grade-card:nth-child(3):hover {
+  box-shadow: 0 25px 50px rgba(255, 149, 0, 0.2);
+}
+
+.grade-card:nth-child(4) {
+  --grade-color: var(--primary-red);
+}
+
+.grade-card:nth-child(4):hover {
+  box-shadow: 0 25px 50px rgba(255, 59, 48, 0.2);
+}
+
+.grade-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  background: linear-gradient(145deg, #f1f5f9 0%, #e2e8f0 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 8px 16px rgba(15, 23, 42, 0.1),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.grade-card:hover .grade-icon {
+  transform: scale(1.1) rotateY(10deg);
+  box-shadow: 
+    0 12px 24px rgba(15, 23, 42, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.9);
+}
+
+.grade-icon i {
+  font-size: 2.2rem;
+  color: var(--grade-color, var(--primary-blue));
+}
+
+.grade-card h5 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+.grade-card p {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Availability Notice - Enhanced Design
+   ========================================================================== */
+
+.availability-notice {
+  margin: 60px 0;
+}
+
+.notice-content {
+  background: linear-gradient(145deg, #dbeafe 0%, #bfdbfe 100%);
+  padding: 40px;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  box-shadow: 
+    0 15px 30px rgba(59, 130, 246, 0.1),
+    0 6px 12px rgba(59, 130, 246, 0.05);
+  border: 1px solid rgba(147, 197, 253, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.notice-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--primary-blue), var(--primary-green));
+}
+
+.notice-content i {
+  font-size: 2.5rem;
+  color: var(--primary-blue);
+  min-width: 40px;
+  margin-top: 5px;
+}
+
+.notice-content h4 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 12px;
+}
+
+.notice-content p {
+  font-size: 1.1rem;
+  color: #1e3a8a;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .section-intro h3 {
+    font-size: 2rem;
+  }
+  
+  .section-intro .lead {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  #usados {
+    padding: 60px 0;
+  }
+  
+  .section-intro {
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .section-intro h3 {
+    font-size: 1.8rem;
+  }
+  
+  .verification-process {
+    padding: 25px;
+  }
+  
+  .condition-grades {
+    margin: 40px 0;
+  }
+  
+  .grade-card {
+    padding: 25px 20px;
+    margin-bottom: 20px;
+  }
+  
+  .notice-content {
+    padding: 30px;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-intro {
+    padding: 25px;
+  }
+  
+  .section-intro h3 {
+    font-size: 1.6rem;
+  }
+  
+  .section-intro .lead {
+    font-size: 1.1rem;
+  }
+  
+  .verification-process {
+    padding: 20px;
+  }
+  
+  .verification-step {
+    padding: 12px 15px;
+  }
+  
+  .grade-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 20px;
+  }
+  
+  .grade-icon i {
+    font-size: 2rem;
+  }
+  
+  .grade-card h5 {
+    font-size: 1.2rem;
+  }
+  
+  .notice-content {
+    padding: 25px;
+  }
+  
+  .notice-content i {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-intro {
+    padding: 20px;
+  }
+  
+  .section-intro h3 {
+    font-size: 1.5rem;
+  }
+  
+  .verification-process {
+    padding: 18px;
+  }
+  
+  .grade-card {
+    padding: 20px 15px;
+  }
+  
+  .grade-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .grade-icon i {
+    font-size: 1.8rem;
+  }
+  
+  .notice-content {
+    padding: 20px;
+  }
+}
+
+/* ==========================================================================
+   Enhanced Animations
+   ========================================================================== */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+  }
+}
+
+.grade-card:hover {
+  animation: float 2s ease-in-out infinite;
+}
+
+.notice-content {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Print styles */
+@media print {
+  .grade-card,
+  .section-intro,
+  .verification-process,
+  .notice-content {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+}

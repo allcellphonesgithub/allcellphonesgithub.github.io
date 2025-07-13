@@ -1,0 +1,438 @@
+/*
+ * Custom CSS for accessibility and UX improvements
+ */
+
+/* Accessibility: Skip to content link */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  padding: 8px 16px;
+  z-index: 10000;
+  transition: top 0.3s;
+}
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Scroll to Top Button */
+.scroll-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: none;
+  width: 3rem;
+  height: 3rem;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 999;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.scroll-top.active {
+  display: flex;
+}
+.scroll-top:hover {
+  background: var(--accent-secondary);
+}
+
+/* Section Spacing */
+section,
+.section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+/*--------------------------------------------------------------
+# About Page Specific Styles
+--------------------------------------------------------------*/
+
+/* Tech Showcase & Quality Badges */
+.tech-item,
+.quality-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Space between icon and text */
+}
+
+.tech-details,
+.badge-text {
+  flex-grow: 1;
+}
+
+.quality-badge {
+  flex-direction: column;
+  text-align: center;
+  gap: 0.5rem; /* Smaller gap for vertical layout */
+}
+
+.badge-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.badge-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+/*--------------------------------------------------------------
+# Services Hub Section
+--------------------------------------------------------------*/
+.services-hub .service-card {
+  background-color: var(--background-color-rgb, 255, 255, 255);
+  border: 1px solid var(--surface-border-color, #e9ecef);
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.services-hub .service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.services-hub .service-card-icon {
+  margin: 0 auto 1.5rem auto;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.services-hub .service-card-icon i {
+  font-size: 2.5rem;
+}
+
+.services-hub .service-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.services-hub .service-card p {
+  margin-bottom: 1.5rem;
+  flex-grow: 1; /* Ensures the button aligns to the bottom */
+}
+
+.services-hub .service-card .btn {
+  margin-top: auto; /* Pushes button to the bottom */
+}
+
+/*--------------------------------------------------------------
+# Contact Section Improvements
+--------------------------------------------------------------*/
+
+/* Contact Info Cards */
+.contact-info-box {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-info-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border-color: var(--accent-color, #007bff);
+}
+
+.contact-info-box .icon-box {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(45deg, var(--accent-color, #007bff), var(--accent-color-dark, #0056b3));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-info-box .icon-box i {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.contact-info-box h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--heading-color, #2c3e50);
+}
+
+.contact-info-box p {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.contact-info-box p strong {
+  color: var(--accent-color, #007bff);
+  font-weight: 600;
+}
+
+.contact-info-box .text-muted {
+  color: #6c757d !important;
+  font-size: 0.9rem;
+}
+
+/* Contact Form Wrapper */
+.contact-form-wrapper {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 24px;
+  padding: 3.5rem;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.contact-form-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+  border-radius: 24px 24px 0 0;
+  animation: gradient-shift 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+  }
+  50% {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 50%, #764ba2 100%);
+  }
+}
+
+.contact-form-wrapper .section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--heading-color, #2c3e50);
+  margin-bottom: 0.5rem;
+}
+
+/* Form Styling */
+.php-email-form .form-group {
+  margin-bottom: 1.8rem;
+}
+
+.php-email-form .form-label {
+  font-weight: 600;
+  color: var(--heading-color, #2c3e50);
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  display: block;
+}
+
+.php-email-form .input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.php-email-form .input-with-icon .form-control {
+  padding-left: 3.25rem;
+  padding-right: 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 14px;
+  height: 56px;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #fafbfc;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.php-email-form .input-with-icon .form-control::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.php-email-form .input-with-icon .form-control:focus {
+  border-color: var(--accent-color, #007bff);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.php-email-form .input-with-icon .form-control:hover:not(:focus) {
+  border-color: #d1d5db;
+  background-color: #fff;
+}
+
+.php-email-form .input-with-icon i {
+  position: absolute;
+  left: 1.125rem;
+  top: 18px;
+  color: #6b7280;
+  font-size: 1.125rem;
+  z-index: 10;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.php-email-form .input-with-icon .form-control:focus + i {
+  color: var(--accent-color, #007bff);
+  transform: scale(1.1);
+}
+
+.php-email-form .input-with-icon .form-control:not(:placeholder-shown) + i {
+  color: var(--accent-color, #007bff);
+}
+
+/* Textarea specific styling */
+.php-email-form textarea.form-control {
+  resize: vertical;
+  min-height: 140px;
+  height: auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.php-email-form .message-icon {
+  top: 18px !important;
+  transform: none !important;
+}
+
+.php-email-form textarea.form-control:focus + .message-icon {
+  transform: scale(1.1) !important;
+}
+
+/* Submit Button */
+.php-email-form .btn-submit {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 16px;
+  padding: 1.125rem 3rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  min-width: 200px;
+}
+
+.php-email-form .btn-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.php-email-form .btn-submit:hover::before {
+  left: 100%;
+}
+
+.php-email-form .btn-submit:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.php-email-form .btn-submit:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.php-email-form .btn-submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.25);
+}
+
+.php-email-form .btn-submit i {
+  margin-right: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.php-email-form .btn-submit:hover i {
+  transform: translateX(4px);
+}
+
+/* Form Messages */
+.php-email-form .loading,
+.php-email-form .error-message,
+.php-email-form .sent-message {
+  display: none;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.php-email-form .loading {
+  background: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #bbdefb;
+}
+
+.php-email-form .error-message {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+
+.php-email-form .sent-message {
+  background: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .contact-form-wrapper {
+    padding: 2rem 1.5rem;
+  }
+  
+  .contact-form-wrapper .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .contact-info-box {
+    padding: 2rem 1.5rem;
+  }
+  
+  .php-email-form .btn-submit {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
+

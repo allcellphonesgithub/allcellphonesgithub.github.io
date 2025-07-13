@@ -1,0 +1,633 @@
+/* Remanufactura Page Specific Styles */
+
+/* Main page structure */
+.remanufactura-page {
+  background: var(--gradient-primary);
+  min-height: 100vh;
+  color: var(--text-secondary);
+}
+
+/* Main content alignment */
+.remanufactura-page .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.remanufactura-page .row {
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* Hero Section Enhancements */
+.remanufactura-page .page-title {
+  background: var(--gradient-primary);
+  border-bottom: 1px solid var(--border-light);
+  padding: 120px 0 80px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.remanufactura-page .page-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(0, 122, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.remanufactura-page .page-title .container {
+  position: relative;
+  z-index: 2;
+}
+
+.remanufactura-page .page-title h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--brand-primary);
+  text-shadow: 0 4px 20px rgba(0, 122, 255, 0.4);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.remanufactura-page .page-title p {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  font-weight: 400;
+}
+
+.remanufactura-page .breadcrumbs {
+  margin-top: 2rem;
+}
+
+.remanufactura-page .breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0.5rem;
+}
+
+.remanufactura-page .breadcrumbs ol li {
+  display: flex;
+  align-items: center;
+}
+
+.remanufactura-page .breadcrumbs ol li a {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.remanufactura-page .breadcrumbs ol li a:hover {
+  color: var(--brand-accent);
+  text-shadow: 0 0 10px rgba(0, 122, 255, 0.3);
+}
+
+.remanufactura-page .breadcrumbs ol li.current {
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.remanufactura-page .breadcrumbs ol li:not(:last-child)::after {
+  content: '/';
+  margin-left: 0.5rem;
+  color: var(--text-tertiary);
+}
+
+/* Service Overview Section */
+.remanufactura-page .service-overview {
+  background: transparent;
+  padding: 5rem 0;
+  position: relative;
+}
+
+.remanufactura-page .service-overview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.02) 0%, transparent 50%, rgba(0, 122, 255, 0.02) 100%);
+  pointer-events: none;
+}
+
+.remanufactura-page .service-overview .container {
+  position: relative;
+  z-index: 2;
+}
+
+.remanufactura-page .service-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.remanufactura-page .service-header h2 {
+  color: var(--brand-primary);
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.01em;
+  position: relative;
+  display: inline-block;
+}
+
+.remanufactura-page .service-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+  border-radius: 2px;
+}
+
+.remanufactura-page .service-header .lead {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+}
+
+.remanufactura-page .service-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Benefits Section */
+.remanufactura-page .service-benefits h3 {
+  color: var(--brand-primary);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Perfect alignment for benefits section */
+.remanufactura-page .service-benefits {
+  margin-bottom: 3rem;
+}
+
+.remanufactura-page .service-benefits .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  margin: 0 -15px;
+  min-height: 350px;
+}
+
+.remanufactura-page .service-benefits .col-lg-3,
+.remanufactura-page .service-benefits .col-md-6 {
+  display: flex;
+  margin-bottom: 2rem;
+  padding: 0 15px;
+  align-items: stretch;
+}
+
+.remanufactura-page .benefit-item {
+  background: var(--gradient-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  min-height: 340px;
+  padding: 2.5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.remanufactura-page .benefit-item:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(96, 165, 250, 0.25), 0 0 0 1px rgba(96, 165, 250, 0.1);
+  border-color: var(--brand-primary);
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+}
+
+.remanufactura-page .benefit-item i {
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  flex-shrink: 0;
+  font-size: 3rem;
+}
+
+.remanufactura-page .benefit-item h5 {
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.remanufactura-page .benefit-item p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1rem;
+  flex-grow: 1;
+  margin-bottom: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Content distribution within benefit items */
+.remanufactura-page .benefit-item .icon-wrapper {
+  flex-shrink: 0;
+  margin-bottom: auto;
+}
+
+.remanufactura-page .benefit-item h5 {
+  flex-shrink: 0;
+  margin: auto 0;
+}
+
+.remanufactura-page .benefit-item p {
+  margin-top: auto;
+}
+
+/* Process Section */
+.remanufactura-page .process-section {
+  margin-top: 3rem;
+}
+
+.remanufactura-page .process-section h3 {
+  color: var(--brand-primary);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.remanufactura-page .process-section .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  margin: 0 -15px;
+  min-height: 280px;
+}
+
+.remanufactura-page .process-section .col-lg-4,
+.remanufactura-page .process-section .col-md-6 {
+  display: flex;
+  margin-bottom: 2rem;
+  padding: 0 15px;
+  align-items: stretch;
+}
+
+.remanufactura-page .process-step {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.remanufactura-page .process-step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #60a5fa, #3b82f6);
+}
+
+.remanufactura-page .process-step:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(96, 165, 250, 0.25), 0 0 0 1px rgba(96, 165, 250, 0.1);
+  border-color: var(--brand-primary);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+.remanufactura-page .step-number {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+}
+
+.remanufactura-page .process-step h6 {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.remanufactura-page .process-step p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1rem;
+  flex-grow: 1;
+  margin-bottom: 0;
+}
+
+.remanufactura-page .tech-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+}
+
+.remanufactura-page .tech-item:hover {
+  transform: translateX(10px);
+  border-color: var(--brand-primary);
+  box-shadow: 0 8px 25px rgba(96, 165, 250, 0.15);
+}
+
+.remanufactura-page .tech-icon i {
+  font-size: 2rem;
+  padding: 0.75rem;
+  background: rgba(96, 165, 250, 0.1);
+  border-radius: 50%;
+  border: 2px solid currentColor;
+}
+
+.remanufactura-page .tech-content h5 {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.remanufactura-page .tech-content p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ========================================================================== 
+   RESPONSIVE DESIGN - Mobile and Tablet Optimizations
+   ========================================================================== */
+
+/* Tablet Styles */
+@media (max-width: 992px) {
+  .remanufactura-page .page-title {
+    padding: 100px 0 60px;
+  }
+  
+  .remanufactura-page .page-title h1 {
+    font-size: 3rem;
+  }
+  
+  .remanufactura-page .page-title p {
+    font-size: 1.25rem;
+  }
+  
+  .remanufactura-page .service-header h2 {
+    font-size: 2.5rem;
+  }
+  
+  .remanufactura-page .service-overview {
+    padding: 4rem 0;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .remanufactura-page .page-title {
+    padding: 80px 0 50px;
+    text-align: center;
+  }
+  
+  .remanufactura-page .page-title h1 {
+    font-size: 2.5rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  
+  .remanufactura-page .page-title p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  .remanufactura-page .service-header h2 {
+    font-size: 2.25rem;
+    margin-bottom: 2rem;
+  }
+  
+  .remanufactura-page .service-header .lead {
+    font-size: 1.15rem;
+    padding: 0 1rem;
+  }
+  
+  .remanufactura-page .service-overview {
+    padding: 3rem 0;
+  }
+  
+  .remanufactura-page .breadcrumbs {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  
+  .remanufactura-page .breadcrumbs ol {
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+  .remanufactura-page .page-title {
+    padding: 60px 0 40px;
+  }
+  
+  .remanufactura-page .page-title h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .remanufactura-page .page-title p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .remanufactura-page .service-header h2 {
+    font-size: 2rem;
+  }
+  
+  .remanufactura-page .service-header .lead {
+    font-size: 1.1rem;
+  }
+}
+
+/* Quality Section Styling */
+.remanufactura-page .quality-item {
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+}
+
+.remanufactura-page .quality-item:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: var(--brand-primary);
+  box-shadow: 0 25px 50px rgba(96, 165, 250, 0.25), 0 0 0 1px rgba(96, 165, 250, 0.1);
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+}
+
+.remanufactura-page .quality-item h4 {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.remanufactura-page .quality-item p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.remanufactura-page .quality-badge .badge {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Enhanced Responsive Alignment */
+@media (max-width: 1199.98px) {
+  .remanufactura-page .service-benefits .row,
+  .remanufactura-page .process-section .row {
+    justify-content: center;
+  }
+  
+  .remanufactura-page .benefit-item {
+    min-height: 300px;
+  }
+  
+  .remanufactura-page .process-step {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .remanufactura-page .page-title h1 {
+    font-size: 2.5rem;
+  }
+  
+  .remanufactura-page .service-header h2 {
+    font-size: 2rem;
+  }
+  
+  .remanufactura-page .service-header .lead {
+    font-size: 1.2rem;
+  }
+  
+  /* Stack sidebar below main content on tablets */
+  .remanufactura-page .service-sidebar {
+    margin-top: 2rem;
+  }
+  
+  .remanufactura-page .benefit-item {
+    min-height: 280px;
+  }
+  
+  .remanufactura-page .process-step {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .remanufactura-page .page-title h1 {
+    font-size: 2rem;
+  }
+  
+  .remanufactura-page .service-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .remanufactura-page .service-header .lead {
+    font-size: 1.1rem;
+  }
+  
+  /* Mobile-specific card alignment */
+  .remanufactura-page .container {
+    padding: 0 10px;
+  }
+  
+  .remanufactura-page .service-benefits .row,
+  .remanufactura-page .process-section .row {
+    margin: 0 -8px;
+    justify-content: center;
+  }
+  
+  .remanufactura-page .service-benefits .col-lg-3,
+  .remanufactura-page .service-benefits .col-md-6,
+  .remanufactura-page .process-section .col-lg-4,
+  .remanufactura-page .process-section .col-md-6 {
+    padding: 0 8px;
+    max-width: 100%;
+  }
+  
+  .remanufactura-page .benefit-item {
+    min-height: 260px;
+    padding: 2rem 1rem;
+  }
+  
+  .remanufactura-page .process-step {
+    min-height: 180px;
+    padding: 2rem 1rem;
+  }
+  
+  .remanufactura-page .tech-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .remanufactura-page .tech-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Enhanced sidebar spacing on mobile */
+  .remanufactura-page .service-sidebar {
+    gap: 1rem;
+  }
+}

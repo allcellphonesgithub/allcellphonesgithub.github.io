@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://allcellphones.com.ar/sitemap.xml
+
+# Disallow unnecessary files
+Disallow: /forms/
+Disallow: /assets/vendor/
+Disallow: *.pdf
+
+# Allow important directories
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/img/ 
