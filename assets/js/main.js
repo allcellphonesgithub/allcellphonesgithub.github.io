@@ -229,7 +229,7 @@
 
   // Contact form enhancements
   function initContactForm() {
-    const form = document.querySelector('.php-email-form');
+    const form = document.querySelector('.php-email-form, .contact-form');
     if (!form) return;
 
     const formInputs = form.querySelectorAll('input, textarea');
@@ -496,7 +496,7 @@
   });
 
   // CRITICAL: Form Validation System
-  const forms = document.querySelectorAll('.php-email-form');
+  const forms = document.querySelectorAll('.php-email-form, .contact-form');
   
   forms.forEach(form => {
     const inputs = form.querySelectorAll('input[required], textarea[required]');
@@ -608,25 +608,92 @@
   function submitForm(form) {
     const submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
     const originalText = submitButton.textContent;
+    const loading = form.querySelector('.loading');
+    const errorMessage = form.querySelector('.error-message');
+    const sentMessage = form.querySelector('.sent-message');
     
     // Show loading state
     submitButton.disabled = true;
     submitButton.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Enviando...';
     
-    // Simulate form submission
-    setTimeout(() => {
-      showFormMessage(form, 'success', '¡Mensaje enviado correctamente! Te contactaremos pronto.');
+    // Show loading and hide other messages
+    if (loading) loading.style.display = 'block';
+    if (errorMessage) errorMessage.style.display = 'none';
+    if (sentMessage) sentMessage.style.display = 'none';
+    
+    // Get form data
+    const formData = new FormData(form);
+    
+    // Submit to Formspree
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (loading) loading.style.display = 'none';
       
-      // Reset form
-      form.reset();
-      form.querySelectorAll('.is-valid, .is-invalid').forEach(field => {
-        field.classList.remove('is-valid', 'is-invalid');
-      });
-      
+      if (response.ok) {
+        // Success
+        if (sentMessage) sentMessage.style.display = 'block';
+        
+        // Reset form
+        form.reset();
+        form.querySelectorAll('.is-valid, .is-invalid').forEach(field => {
+          field.classList.remove('is-valid', 'is-invalid');
+        });
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          if (sentMessage) sentMessage.style.display = 'none';
+        }, 5000);
+      } else {
+        // Error response from Formspree
+        response.json().then(data => {
+          if (errorMessage) {
+            const errorSpan = errorMessage.querySelector('span');
+            const errorText = data.error || 'Hubo un problema al enviar el mensaje. Por favor intenta nuevamente.';
+            if (errorSpan) {
+              errorSpan.textContent = errorText;
+            } else {
+              errorMessage.textContent = errorText;
+            }
+            errorMessage.style.display = 'block';
+          }
+        }).catch(() => {
+          if (errorMessage) {
+            const errorSpan = errorMessage.querySelector('span');
+            const errorText = 'Hubo un problema al enviar el mensaje. Por favor intenta nuevamente.';
+            if (errorSpan) {
+              errorSpan.textContent = errorText;
+            } else {
+              errorMessage.textContent = errorText;
+            }
+            errorMessage.style.display = 'block';
+          }
+        });
+      }
+    })
+    .catch(error => {
+      if (loading) loading.style.display = 'none';
+      if (errorMessage) {
+        const errorSpan = errorMessage.querySelector('span');
+        const errorText = 'Error de conexión. Por favor verifica tu conexión a internet e intenta nuevamente.';
+        if (errorSpan) {
+          errorSpan.textContent = errorText;
+        } else {
+          errorMessage.textContent = errorText;
+        }
+        errorMessage.style.display = 'block';
+      }
+    })
+    .finally(() => {
       // Reset button
       submitButton.disabled = false;
       submitButton.textContent = originalText;
-    }, 2000);
+    });
   }
   
   function showFormMessage(form, type, message) {

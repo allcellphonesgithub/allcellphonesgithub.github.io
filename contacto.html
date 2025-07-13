@@ -52,6 +52,37 @@
 
   <!-- Unified CSS System -->
   <link href="assets/css/unified-main.css" rel="stylesheet">
+  
+  <!-- Custom Form Message Animations -->
+  <style>
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes slideInFromTop {
+      0% {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    .loading, .error-message, .sent-message {
+      transition: all 0.3s ease;
+    }
+    
+    .error-message span:empty {
+      display: none;
+    }
+    
+    .error-message span:not(:empty) {
+      display: inline;
+    }
+  </style>
 
   <!-- Structured Data - Contact -->
   <script type="application/ld+json">
@@ -310,7 +341,7 @@
             </div>
             
             <div class="contact-form-container" style="background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 20px; padding: 3rem 2.5rem; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);">
-              <form action="forms/contact.php" method="post" class="contact-form" data-aos="fade-up" data-aos-delay="200">
+              <form action="https://formspree.io/f/mdkdnkyv" method="POST" class="contact-form" data-aos="fade-up" data-aos-delay="200">
                 <div class="row gy-4">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -346,9 +377,21 @@
                     </div>
                   </div>
                   <div class="col-12 text-center">
-                    <div class="loading" style="display: none;">Enviando...</div>
-                    <div class="error-message" style="display: none;"></div>
-                    <div class="sent-message" style="display: none;">Tu mensaje fue enviado. ¡Gracias!</div>
+                    <div class="loading" style="display: none; background: rgba(0, 122, 255, 0.1); border: 1px solid rgba(0, 122, 255, 0.2); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; text-align: center; color: var(--accent-color); font-weight: 500;">
+                      <i class="bi bi-arrow-clockwise" style="animation: spin 1s linear infinite; margin-right: 0.5rem;"></i>
+                      Enviando tu mensaje...
+                    </div>
+                    <div class="error-message" style="display: none; background: rgba(220, 53, 69, 0.1); border: 1px solid rgba(220, 53, 69, 0.2); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; color: #dc3545; font-weight: 500; text-align: center;">
+                      <i class="bi bi-exclamation-triangle me-2"></i>
+                      <span></span>
+                    </div>
+                    <div class="sent-message" style="display: none; background: rgba(25, 135, 84, 0.1); border: 1px solid rgba(25, 135, 84, 0.2); border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; text-align: center; color: #198754; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(25, 135, 84, 0.15); animation: slideInFromTop 0.5s ease-out;">
+                      <i class="bi bi-check-circle-fill me-2" style="font-size: 1.3rem; color: #198754;"></i>
+                      ¡Tu mensaje fue enviado exitosamente!
+                      <div style="font-size: 0.9rem; margin-top: 0.5rem; font-weight: 400; color: #146c43;">
+                        Te responderemos dentro de las próximas 24 horas
+                      </div>
+                    </div>
                     <button type="submit" class="btn btn-primary btn-lg" style="padding: 14px 32px; font-size: 1.1rem; border-radius: 8px; min-width: 180px;">
                       <span>ENVIAR MENSAJE</span>
                       <i class="bi bi-send ms-2"></i>
