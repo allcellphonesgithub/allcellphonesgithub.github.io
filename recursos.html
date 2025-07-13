@@ -49,6 +49,7 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/photoswipe@5.4.4/dist/photoswipe.css" rel="stylesheet">
 
   <!-- Unified CSS System -->
   <link href="assets/css/unified-main.css" rel="stylesheet">
@@ -110,6 +111,146 @@
     .faq-item:not(.faq-active) .faq-content p {
       transition-delay: 0s;
     }
+
+    /* Gallery Styles */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .gallery-item a {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      border-radius: 11px;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 11px;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay i {
+      color: white;
+      font-size: 2rem;
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay i {
+      transform: scale(1);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+
+      .gallery-item {
+        aspect-ratio: 16/9;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .gallery-item {
+        aspect-ratio: 4/3;
+      }
+    }
+
+    /* High density displays */
+    @media (min-width: 1200px) {
+      .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Lazy Loading Transitions */
+    .lazy-load {
+      opacity: 0.7;
+      filter: blur(1px);
+      transition: opacity 0.3s ease, filter 0.3s ease;
+    }
+
+    .lazy-load.loaded {
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    /* Loading state placeholder */
+    .gallery-item img[src*="data:image/svg"] {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Image fade-in animation */
+    @keyframes imageLoad {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .gallery-item img.loaded {
+      animation: imageLoad 0.4s ease-out;
+    }
   </style>
 
   <!-- Structured Data - Blog -->
@@ -155,6 +296,7 @@
           <li class="dropdown"><a href="recursos.html" class="active"><span>Recursos</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="recursos.html">Blog y Tutoriales</a></li>
+              <li><a href="recursos.html#gallery">Fotos</a></li>
               <li><a href="recursos.html#guides">Guías Técnicas</a></li>
               <li><a href="recursos.html#faq">Preguntas Frecuentes</a></li>
             </ul>
@@ -272,6 +414,859 @@
         </div>
       </div>
     </section><!-- /Resources Overview Section -->
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="section dark-background">
+      <div class="container section-title" data-aos="fade-up">
+        <h2 style="color: #ffffff;">Nuestro Taller</h2>
+        <div><span style="color: rgba(255, 255, 255, 0.8);">Conocé nuestro</span> <span class="description-title" style="color: var(--apple-orange);">Espacio de Trabajo</span></div>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center mb-4">
+          <div class="col-lg-8 text-center">
+            <p class="lead" style="color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; margin-bottom: 2rem;">Descubrí el lugar donde la magia de la remanufactura Apple sucede. Equipamiento de última generación, técnicas avanzadas y un ambiente profesional diseñado para garantizar la máxima calidad en cada reparación.</p>
+          </div>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="workshop-gallery">
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+            <a href="assets/photos/DSC07185.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Espacio de trabajo profesional para remanufactura Apple">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" 
+                   data-src="assets/photos/DSC07185.webp" 
+                   alt="Espacio de trabajo profesional para remanufactura Apple" 
+                   loading="lazy" 
+                   class="lazy-load">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="250">
+            <a href="assets/photos/DSC07206.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Herramientas especializadas para reparación Apple">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" 
+                   data-src="assets/photos/DSC07206.webp" 
+                   alt="Herramientas especializadas para reparación Apple" 
+                   loading="lazy" 
+                   class="lazy-load">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+            <a href="assets/photos/DSC07211.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de remanufactura de pantallas iPhone">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07211.webp" class="lazy-load" alt="Proceso de remanufactura de pantallas iPhone" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="350">
+            <a href="assets/photos/DSC07231.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Equipamiento de precisión para reparaciones Apple">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07231.webp" class="lazy-load" alt="Equipamiento de precisión para reparaciones Apple" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+            <a href="assets/photos/DSC07247.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Técnico trabajando en remanufactura de pantalla">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07247.webp" class="lazy-load" alt="Técnico trabajando en remanufactura de pantalla" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="450">
+            <a href="assets/photos/DSC07268.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Estación de trabajo con componentes Apple originales">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07268.webp" class="lazy-load" alt="Estación de trabajo con componentes Apple originales" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
+            <a href="assets/photos/DSC07285.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso detallado de separación de componentes">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07285.webp" class="lazy-load" alt="Proceso detallado de separación de componentes" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="550">
+            <a href="assets/photos/DSC07314.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Área de limpieza y preparación de pantallas">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07314.webp" class="lazy-load" alt="Área de limpieza y preparación de pantallas" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="600">
+            <a href="assets/photos/DSC07329.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Control de calidad en proceso de remanufactura">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07329.webp" class="lazy-load" alt="Control de calidad en proceso de remanufactura" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="650">
+            <a href="assets/photos/DSC07388.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Técnicas avanzadas de reparación Apple">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07388.webp" class="lazy-load" alt="Técnicas avanzadas de reparación Apple" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="700">
+            <a href="assets/photos/DSC07453.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Montaje final de pantalla remanufacturada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07453.webp" class="lazy-load" alt="Montaje final de pantalla remanufacturada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="750">
+            <a href="assets/photos/DSC07558.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Organización y almacenamiento de herramientas">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07558.webp" class="lazy-load" alt="Organización y almacenamiento de herramientas" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="800">
+            <a href="assets/photos/DSC07565.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de calibración y ajuste de equipos">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07565.webp" class="lazy-load" alt="Proceso de calibración y ajuste de equipos" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="850">
+            <a href="assets/photos/DSC07575.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Técnicas especializadas de separación de componentes">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07575.webp" class="lazy-load" alt="Técnicas especializadas de separación de componentes" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="900">
+            <a href="assets/photos/DSC07578.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Aplicación de adhesivos y selladores especializados">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07578.webp" class="lazy-load" alt="Aplicación de adhesivos y selladores especializados" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="950">
+            <a href="assets/photos/DSC07583.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Verificación final de calidad y funcionalidad">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07583.webp" class="lazy-load" alt="Verificación final de calidad y funcionalidad" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1000">
+            <a href="assets/photos/DSC07589.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de laminación y prensado profesional">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07589.webp" class="lazy-load" alt="Proceso de laminación y prensado profesional" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1050">
+            <a href="assets/photos/DSC07592.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Técnicas avanzadas de soldadura y microsoldadura">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07592.webp" class="lazy-load" alt="Técnicas avanzadas de soldadura y microsoldadura" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1100">
+            <a href="assets/photos/DSC07600.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Estación de trabajo con equipamiento de precisión">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07600.webp" class="lazy-load" alt="Estación de trabajo con equipamiento de precisión" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1150">
+            <a href="assets/photos/DSC07610.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Área de almacenamiento y organización de materiales">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07610.webp" class="lazy-load" alt="Área de almacenamiento y organización de materiales" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1200">
+            <a href="assets/photos/DSC07611.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de ensamblaje y montaje final">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07611.webp" class="lazy-load" alt="Proceso de ensamblaje y montaje final" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1250">
+            <a href="assets/photos/DSC07613.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Técnicas de reparación especializada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07613.webp" class="lazy-load" alt="Técnicas de reparación especializada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1300">
+            <a href="assets/photos/DSC07614.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Finalización de proceso de remanufactura">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07614.webp" class="lazy-load" alt="Finalización de proceso de remanufactura" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1350">
+            <a href="assets/photos/DSC07605.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Herramientas de precisión para reparación">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07605.webp" class="lazy-load" alt="Herramientas de precisión para reparación" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1450">
+            <a href="assets/photos/DSC07601.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Técnicas de reparación avanzada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07601.webp" class="lazy-load" alt="Técnicas de reparación avanzada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1500">
+            <a href="assets/photos/DSC07599.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Estación de trabajo con equipos especializados">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07599.webp" class="lazy-load" alt="Estación de trabajo con equipos especializados" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1550">
+            <a href="assets/photos/DSC07595.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de separación y clasificación">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07595.webp" class="lazy-load" alt="Proceso de separación y clasificación" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1600">
+            <a href="assets/photos/DSC07591.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Técnicas de soldadura y microsoldadura">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07591.webp" class="lazy-load" alt="Técnicas de soldadura y microsoldadura" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1650">
+            <a href="assets/photos/DSC07590.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de calibración y ajuste">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07590.webp" class="lazy-load" alt="Proceso de calibración y ajuste" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1700">
+            <a href="assets/photos/DSC07586.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Equipos de medición y diagnóstico">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07586.webp" class="lazy-load" alt="Equipos de medición y diagnóstico" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1750">
+            <a href="assets/photos/DSC07584.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de limpieza especializada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07584.webp" class="lazy-load" alt="Proceso de limpieza especializada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1800">
+            <a href="assets/photos/DSC07580.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Herramientas de precisión para ensamblaje">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07580.webp" class="lazy-load" alt="Herramientas de precisión para ensamblaje" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1850">
+            <a href="assets/photos/DSC07579.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de reparación detallada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07579.webp" class="lazy-load" alt="Proceso de reparación detallada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1900">
+            <a href="assets/photos/DSC075652.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Equipamiento profesional de taller">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC075652.webp" class="lazy-load" alt="Equipamiento profesional de taller" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="1950">
+            <a href="assets/photos/DSC07436.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de montaje y verificación">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07436.webp" class="lazy-load" alt="Proceso de montaje y verificación" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2000">
+            <a href="assets/photos/DSC07430.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Herramientas especializadas para Apple">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07430.webp" class="lazy-load" alt="Herramientas especializadas para Apple" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2050">
+            <a href="assets/photos/DSC07422.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de reparación de componentes">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07422.webp" class="lazy-load" alt="Proceso de reparación de componentes" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2100">
+            <a href="assets/photos/DSC07394.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Técnicas de soldadura especializada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07394.webp" class="lazy-load" alt="Técnicas de soldadura especializada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2150">
+            <a href="assets/photos/DSC07372.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Espacio de trabajo organizado">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07372.webp" class="lazy-load" alt="Espacio de trabajo organizado" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2200">
+            <a href="assets/photos/DSC07368.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de limpieza y preparación">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07368.webp" class="lazy-load" alt="Proceso de limpieza y preparación" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2250">
+            <a href="assets/photos/DSC073522.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Equipos de precisión para remanufactura">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC073522.webp" class="lazy-load" alt="Equipos de precisión para remanufactura" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2300">
+            <a href="assets/photos/DSC07339.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Herramientas de diagnóstico avanzado">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07339.webp" class="lazy-load" alt="Herramientas de diagnóstico avanzado" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2350">
+            <a href="assets/photos/DSC07331.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de ensamblaje especializado">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07331.webp" class="lazy-load" alt="Proceso de ensamblaje especializado" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2400">
+            <a href="assets/photos/DSC07318.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Técnicas de reparación de alta precisión">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07318.webp" class="lazy-load" alt="Técnicas de reparación de alta precisión" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2450">
+            <a href="assets/photos/DSC07307-2.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de calibración y verificación">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07307-2.webp" class="lazy-load" alt="Proceso de calibración y verificación" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2500">
+            <a href="assets/photos/DSC07305.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Área de trabajo especializada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07305.webp" class="lazy-load" alt="Área de trabajo especializada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2550">
+            <a href="assets/photos/DSC07300.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de montaje y ajuste">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07300.webp" class="lazy-load" alt="Proceso de montaje y ajuste" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2600">
+            <a href="assets/photos/DSC07289.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Técnicas de reparación especializada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07289.webp" class="lazy-load" alt="Técnicas de reparación especializada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2650">
+            <a href="assets/photos/DSC07284.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de limpieza y preparación">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07284.webp" class="lazy-load" alt="Proceso de limpieza y preparación" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2700">
+            <a href="assets/photos/DSC07283-2.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Equipos de alta precisión">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07283-2.webp" class="lazy-load" alt="Equipos de alta precisión" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2750">
+            <a href="assets/photos/DSC07280.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de ensamblaje final">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07280.webp" class="lazy-load" alt="Proceso de ensamblaje final" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2800">
+            <a href="assets/photos/DSC07276.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Herramientas de medición especializada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07276.webp" class="lazy-load" alt="Herramientas de medición especializada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2850">
+            <a href="assets/photos/DSC07270.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de soldadura de precisión">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07270.webp" class="lazy-load" alt="Proceso de soldadura de precisión" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2900">
+            <a href="assets/photos/DSC07266.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Equipos de diagnóstico profesional">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07266.webp" class="lazy-load" alt="Equipos de diagnóstico profesional" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="2950">
+            <a href="assets/photos/DSC07262.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de calibración avanzada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07262.webp" class="lazy-load" alt="Proceso de calibración avanzada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="3000">
+            <a href="assets/photos/DSC07259.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Técnicas de reparación avanzada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07259.webp" class="lazy-load" alt="Técnicas de reparación avanzada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="3050">
+            <a href="assets/photos/DSC07255.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de limpieza especializada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07255.webp" class="lazy-load" alt="Proceso de limpieza especializada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="3100">
+            <a href="assets/photos/DSC07251.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Herramientas de precisión para Apple">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07251.webp" class="lazy-load" alt="Herramientas de precisión para Apple" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="3150">
+            <a href="assets/photos/DSC07250.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de ensamblaje y verificación">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07250.webp" class="lazy-load" alt="Proceso de ensamblaje y verificación" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="3200">
+            <a href="assets/photos/DSC07238.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Equipos de medición y control">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07238.webp" class="lazy-load" alt="Equipos de medición y control" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="3250">
+            <a href="assets/photos/DSC07233.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de reparación detallada">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07233.webp" class="lazy-load" alt="Proceso de reparación detallada" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="3300">
+            <a href="assets/photos/DSC07223.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Herramientas especializadas de taller">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07223.webp" class="lazy-load" alt="Herramientas especializadas de taller" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="3350">
+            <a href="assets/photos/DSC07218.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Proceso de calibración y ajuste">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07218.webp" class="lazy-load" alt="Proceso de calibración y ajuste" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="3400">
+            <a href="assets/photos/DSC07216.webp" 
+               data-pswp-width="1920" 
+               data-pswp-height="1280" 
+               data-pswp-alt="Equipamiento profesional de remanufactura">
+               
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23666' style='font-family:Arial;font-size:14px'%3ECargando...%3C/text%3E%3C/svg%3E" data-src="assets/photos/DSC07216.webp" class="lazy-load" alt="Equipamiento profesional de remanufactura" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="bi bi-zoom-in"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Photo Gallery Section -->
 
     <!-- Guides Section -->
     <section id="guides" class="section" style="background: rgba(255, 255, 255, 0.02);">
@@ -536,6 +1531,7 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
 
+
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
@@ -591,6 +1587,163 @@
           observer.observe(item, { attributes: true });
         }
       });
+    });
+  </script>
+
+  <!-- Lazy Loading for Gallery Performance -->
+  <script>
+    // Efficient lazy loading for gallery images
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Initializing Lazy Loading...');
+      
+      // Intersection Observer for lazy loading
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            const src = img.dataset.src;
+            
+            if (src) {
+              console.log('Loading image:', src);
+              img.src = src;
+              img.removeAttribute('data-src');
+              img.classList.remove('lazy-load');
+              img.classList.add('loaded');
+              observer.unobserve(img);
+            }
+          }
+        });
+      }, {
+        rootMargin: '50px 0px',
+        threshold: 0.01
+      });
+      
+      // Observe all lazy load images
+      const lazyImages = document.querySelectorAll('.lazy-load');
+      lazyImages.forEach(img => {
+        imageObserver.observe(img);
+      });
+      
+      console.log(`Lazy loading initialized for ${lazyImages.length} images`);
+    });
+  </script>
+
+  <!-- PhotoSwipe from CDN -->
+  <script type="module">
+    import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.js';
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Initializing PhotoSwipe Gallery from CDN...');
+      
+      // Wait for lazy loading to settle
+      setTimeout(() => {
+        try {
+          // Initialize PhotoSwipe for workshop gallery
+          const lightbox = new PhotoSwipeLightbox({
+            gallery: '#workshop-gallery',
+            children: 'a',
+            pswpModule: () => import('https://unpkg.com/photoswipe@5.4.4/dist/photoswipe.esm.js'),
+            
+            // Core options for best performance
+            bgOpacity: 0.85,
+            showHideAnimationType: 'zoom',
+            
+            // Zoom configuration
+            initialZoomLevel: 'fit',
+            secondaryZoomLevel: 2,
+            maxZoomLevel: 4,
+            
+            // Navigation controls
+            arrowKeys: true,
+            escKey: true,
+            wheelToZoom: true,
+            
+            // Spanish interface
+            closeTitle: 'Cerrar (Esc)',
+            zoomTitle: 'Ampliar imagen',
+            arrowPrevTitle: 'Imagen anterior',
+            arrowNextTitle: 'Imagen siguiente',
+            
+            // Optimized animations
+            showAnimationDuration: 250,
+            hideAnimationDuration: 200,
+            zoomAnimationDuration: 200,
+            
+            // Touch and interaction
+            clickToCloseNonZoomable: true,
+            pinchToClose: true,
+            closeOnVerticalDrag: true,
+            
+            // Dynamic responsive padding
+            padding: function(viewportSize, itemData, index) {
+              const isMobile = viewportSize.x < 768;
+              return {
+                top: isMobile ? 10 : 20,
+                bottom: isMobile ? 50 : 40,
+                left: isMobile ? 10 : 80,
+                right: isMobile ? 10 : 80
+              };
+            },
+            
+            // Minimal preloading for performance
+            preload: [1, 1]
+          });
+          
+          // Enhanced event handling
+          lightbox.on('beforeOpen', () => {
+            console.log('PhotoSwipe: Opening gallery');
+            document.body.style.overflow = 'hidden';
+          });
+          
+          lightbox.on('afterInit', () => {
+            console.log('PhotoSwipe: Gallery ready');
+          });
+          
+          lightbox.on('change', () => {
+            const currentIndex = lightbox.pswp.currIndex;
+            console.log('PhotoSwipe: Changed to image', currentIndex + 1);
+          });
+          
+          lightbox.on('close', () => {
+            console.log('PhotoSwipe: Gallery closed');
+            document.body.style.overflow = '';
+          });
+          
+          // Error handling
+          lightbox.on('contentLoadImage', (e) => {
+            console.log('Loading full-size image:', e.content.data.src);
+          });
+          
+          lightbox.on('loadError', (e) => {
+            console.error('Failed to load image:', e.content.data.src);
+          });
+          
+          // Initialize PhotoSwipe
+          lightbox.init();
+          console.log('PhotoSwipe: Successfully initialized from CDN');
+          
+          // Prevent default behavior and add analytics
+          const galleryLinks = document.querySelectorAll('#workshop-gallery a');
+          galleryLinks.forEach((link, index) => {
+            link.addEventListener('click', (e) => {
+              console.log('Gallery image clicked:', index + 1);
+              e.preventDefault();
+              
+              // Analytics tracking
+              if (typeof gtag !== 'undefined') {
+                gtag('event', 'gallery_image_view', {
+                  'event_category': 'Workshop_Gallery',
+                  'event_label': link.dataset.pswpAlt || `Image ${index + 1}`,
+                  'value': index + 1
+                });
+              }
+            });
+          });
+          
+        } catch (error) {
+          console.error('PhotoSwipe: Failed to initialize from CDN', error);
+        }
+      }, 300);
     });
   </script>
 
