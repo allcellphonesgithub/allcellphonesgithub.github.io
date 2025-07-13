@@ -445,7 +445,7 @@ li {
     top: 0;
     right: 0;
     width: 300px;
-    height: 100vh;
+    height: auto;
     background: var(--bg-primary);
     border-left: 1px solid var(--border-light);
     overflow-y: auto;
@@ -488,6 +488,15 @@ li {
 
   .navmenu .dropdown ul.dropdown-active {
     display: block;
+  }
+
+  /* Make Recursos dropdown expanded by default on mobile */
+  .navmenu .dropdown.recursos-dropdown ul {
+    display: block;
+  }
+
+  .navmenu .dropdown.recursos-dropdown .toggle-dropdown {
+    transform: translateY(-50%) rotate(180deg);
   }
 
   .navmenu .dropdown ul a {

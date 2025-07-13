@@ -26,9 +26,24 @@
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
   function mobileNavToggle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
+    const body = document.querySelector('body');
+    const isOpening = !body.classList.contains('mobile-nav-active');
+    
+    body.classList.toggle('mobile-nav-active');
     mobileNavToggleBtn.classList.toggle('bi-list');
     mobileNavToggleBtn.classList.toggle('bi-x');
+    
+    // Initialize Recursos dropdown as active when mobile menu opens
+    if (isOpening) {
+      const recursosDropdown = document.querySelector('.navmenu .dropdown.recursos-dropdown');
+      if (recursosDropdown) {
+        recursosDropdown.classList.add('active');
+        const dropdownUl = recursosDropdown.querySelector('ul');
+        if (dropdownUl) {
+          dropdownUl.classList.add('dropdown-active');
+        }
+      }
+    }
   }
   
   if (mobileNavToggleBtn) {
