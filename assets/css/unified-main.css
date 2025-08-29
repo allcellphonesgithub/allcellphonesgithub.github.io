@@ -500,6 +500,12 @@ li {
     border-bottom: 1px solid var(--border-light);
     border-radius: 0;
     display: block;
+    position: relative;
+  }
+  
+  /* Special padding for dropdown items to make room for arrow */
+  .navmenu .dropdown > a {
+    padding-right: 60px;
   }
 
   .navmenu a:hover,
@@ -527,13 +533,13 @@ li {
     display: block;
   }
 
-  /* Make Recursos dropdown expanded by default on mobile */
-  .navmenu .dropdown.recursos-dropdown ul {
-    display: block;
+  /* Recursos dropdown closed by default on mobile */
+  .navmenu .dropdown ul {
+    display: none;
   }
 
-  .navmenu .dropdown.recursos-dropdown .toggle-dropdown {
-    transform: translateY(-50%) rotate(180deg);
+  .navmenu .dropdown.active ul {
+    display: block;
   }
 
   .navmenu .dropdown ul a {
@@ -551,15 +557,32 @@ li {
   .navmenu .toggle-dropdown {
     position: absolute;
     top: 50%;
-    right: var(--spacing-lg);
+    right: 12px;
     transform: translateY(-50%);
     font-size: 16px;
     color: var(--text-secondary);
-    transition: var(--transition-normal);
+    transition: var(--transition-spring);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: var(--radius-round);
+    background: rgba(255, 255, 255, 0.08);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .navmenu .toggle-dropdown:hover {
+    background: rgba(0, 122, 255, 0.2);
+    color: var(--primary-color);
   }
 
   .navmenu .dropdown.active .toggle-dropdown {
     transform: translateY(-50%) rotate(180deg);
+    background: rgba(0, 122, 255, 0.3);
+    color: var(--primary-color);
   }
 }
 

@@ -36,20 +36,20 @@
     
     // Toggle hamburger icon
     if (mobileNavToggleBtn) {
-      mobileNavToggleBtn.classList.toggle('bi-list');
-      mobileNavToggleBtn.classList.toggle('bi-x');
+    mobileNavToggleBtn.classList.toggle('bi-list');
+    mobileNavToggleBtn.classList.toggle('bi-x');
     }
     
-    // Initialize Recursos dropdown as active when mobile menu opens
+    // Ensure all dropdowns are closed when mobile menu opens
     if (isOpening) {
-      const recursosDropdown = document.querySelector('.navmenu .dropdown.recursos-dropdown');
-      if (recursosDropdown) {
-        recursosDropdown.classList.add('active');
-        const dropdownUl = recursosDropdown.querySelector('ul');
+      const allDropdowns = document.querySelectorAll('.navmenu .dropdown');
+      allDropdowns.forEach(dropdown => {
+        dropdown.classList.remove('active');
+        const dropdownUl = dropdown.querySelector('ul');
         if (dropdownUl) {
-          dropdownUl.classList.add('dropdown-active');
+          dropdownUl.classList.remove('dropdown-active');
         }
-      }
+      });
     }
     
     console.log('Mobile nav active:', body.classList.contains('mobile-nav-active')); // Debug log
@@ -83,16 +83,48 @@
   });
 
   /**
-   * Toggle mobile nav dropdowns
+   * Enhanced mobile nav dropdowns with touch support
    */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
+  function initDropdownToggles() {
+    document.querySelectorAll('.navmenu .toggle-dropdown').forEach(toggle => {
+      // Remove existing listeners to prevent duplicates
+      const newToggle = toggle.cloneNode(true);
+      toggle.parentNode.replaceChild(newToggle, toggle);
+      
+      ['click', 'touchend'].forEach(eventType => {
+        newToggle.addEventListener(eventType, function(e) {
       e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
+          e.stopPropagation();
+          
+          console.log('Dropdown toggle clicked:', eventType); // Debug log
+          
+          const dropdownParent = this.closest('.dropdown');
+          const dropdownUl = dropdownParent.querySelector('ul');
+          
+          if (dropdownParent && dropdownUl) {
+            const isActive = dropdownParent.classList.contains('active');
+            
+            // Close all other dropdowns first
+            document.querySelectorAll('.navmenu .dropdown').forEach(otherDropdown => {
+              if (otherDropdown !== dropdownParent) {
+                otherDropdown.classList.remove('active');
+                const otherUl = otherDropdown.querySelector('ul');
+                if (otherUl) {
+                  otherUl.classList.remove('dropdown-active');
+                }
+              }
+            });
+            
+            // Toggle current dropdown
+            dropdownParent.classList.toggle('active');
+            dropdownUl.classList.toggle('dropdown-active');
+            
+            console.log('Dropdown active:', dropdownParent.classList.contains('active')); // Debug log
+          }
+        });
+      });
     });
-  });
+  }
 
   /**
    * Scroll top button
@@ -524,11 +556,13 @@
   document.addEventListener('DOMContentLoaded', function() {
     initAllCellphones();
     initMobileNavigation();
+    initDropdownToggles();
   });
   
   // Also initialize on window load as backup
   window.addEventListener('load', function() {
     initMobileNavigation();
+    initDropdownToggles();
   });
 
   // Performance optimization: debounce scroll events
