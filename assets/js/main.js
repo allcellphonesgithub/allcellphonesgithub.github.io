@@ -21,17 +21,24 @@
   window.addEventListener('load', toggleScrolled);
 
   /**
-   * Mobile nav toggle
+   * Enhanced Mobile nav toggle with debugging
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
   function mobileNavToggle() {
+    console.log('Mobile nav toggle clicked'); // Debug log
     const body = document.querySelector('body');
+    const navmenu = document.querySelector('.navmenu');
     const isOpening = !body.classList.contains('mobile-nav-active');
     
+    // Toggle mobile nav active state
     body.classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
+    
+    // Toggle hamburger icon
+    if (mobileNavToggleBtn) {
+      mobileNavToggleBtn.classList.toggle('bi-list');
+      mobileNavToggleBtn.classList.toggle('bi-x');
+    }
     
     // Initialize Recursos dropdown as active when mobile menu opens
     if (isOpening) {
@@ -44,16 +51,30 @@
         }
       }
     }
+    
+    console.log('Mobile nav active:', body.classList.contains('mobile-nav-active')); // Debug log
   }
   
+  // Enhanced event listener with touch support
   if (mobileNavToggleBtn) {
     mobileNavToggleBtn.addEventListener('click', mobileNavToggle);
+    mobileNavToggleBtn.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      mobileNavToggle();
+    });
+    
+    // Ensure button is visible and clickable
+    mobileNavToggleBtn.style.pointerEvents = 'auto';
+    mobileNavToggleBtn.style.userSelect = 'none';
+    console.log('Mobile nav toggle initialized'); // Debug log
+  } else {
+    console.error('Mobile nav toggle button not found!'); // Debug log
   }
 
   /**
    * Hide mobile nav on same-page/hash links
    */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
+  document.querySelectorAll('.navmenu a').forEach(navmenu => {
     navmenu.addEventListener('click', () => {
       if (document.querySelector('.mobile-nav-active')) {
         mobileNavToggle();
@@ -467,8 +488,48 @@
     setTimeout(forceAllElementsVisible, 500);
   }
 
+  // Enhanced mobile navigation initialization
+  function initMobileNavigation() {
+    const mobileToggle = document.querySelector('.mobile-nav-toggle');
+    const navmenu = document.querySelector('.navmenu');
+    const body = document.body;
+    
+    if (!mobileToggle) {
+      console.error('Mobile navigation toggle not found');
+      return;
+    }
+    
+    console.log('Initializing mobile navigation...');
+    
+    // Ensure button is properly set up
+    mobileToggle.style.display = 'flex';
+    mobileToggle.style.cursor = 'pointer';
+    mobileToggle.setAttribute('aria-label', 'Toggle navigation menu');
+    mobileToggle.setAttribute('role', 'button');
+    
+    // Add multiple event listeners for better compatibility
+    ['click', 'touchend'].forEach(eventType => {
+      mobileToggle.addEventListener(eventType, function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log(`Mobile nav triggered via ${eventType}`);
+        mobileNavToggle();
+      });
+    });
+    
+    console.log('Mobile navigation initialized successfully');
+  }
+
   // Initialize everything when DOM is loaded
-  document.addEventListener('DOMContentLoaded', initAllCellphones);
+  document.addEventListener('DOMContentLoaded', function() {
+    initAllCellphones();
+    initMobileNavigation();
+  });
+  
+  // Also initialize on window load as backup
+  window.addEventListener('load', function() {
+    initMobileNavigation();
+  });
 
   // Performance optimization: debounce scroll events
   function debounce(func, wait) {

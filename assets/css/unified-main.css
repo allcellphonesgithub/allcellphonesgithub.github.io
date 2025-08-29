@@ -422,15 +422,14 @@ li {
     justify-content: space-between;
   }
   
-  .navmenu {
-    display: none;
-  }
+
 }
 
 /* Adjust position for very small screens */
 @media (max-width: 767px) {
   .mobile-nav-toggle {
-    right: 15px;
+    position: relative;
+    margin-left: auto;
   }
 }
 
@@ -475,6 +474,7 @@ li {
     visibility: hidden;
     transform: translateX(100%);
     transition: var(--transition-normal);
+    display: block !important;
   }
 
   .navmenu ul {
@@ -568,6 +568,16 @@ li {
   opacity: 1;
   visibility: visible;
   transform: translateX(0);
+}
+
+/* Ensure mobile toggle is always visible on mobile */
+@media (max-width: 1199px) {
+  .mobile-nav-toggle {
+    display: flex !important;
+    position: relative;
+    margin-left: auto;
+    z-index: calc(var(--z-modal) + 1);
+  }
 }
 
 .mobile-nav-active .mobile-nav-toggle {
